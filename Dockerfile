@@ -7,7 +7,7 @@ VOLUME [ "/var/lib/mysql" ]
 RUN apt-get update && apt-get install -y python3 \
     python3-pip \
     libmysqlclient-dev \
-    pkg-config \
+    pkg-config
 
 COPY . .
 
