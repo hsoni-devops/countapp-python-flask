@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  mysql_database:
+    image: mysql:8.0
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+  python_counter_app:
+    # image: hsoni2404/counterapp:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+    depends_on:
+      - mysql_database
+
+volumes:
+  my-db:
